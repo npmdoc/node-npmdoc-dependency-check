@@ -56,6 +56,15 @@
 
         <li>
 
+            <a class="apidocElementLiA" href="#apidoc.element.dependency-check.dependency-check">
+            function <span class="apidocSignatureSpan"></span>dependency-check
+            <span class="apidocSignatureSpan">(opts, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
             <a class="apidocElementLiA" href="#apidoc.element.dependency-check.extra">
             function <span class="apidocSignatureSpan">dependency-check.</span>extra
             <span class="apidocSignatureSpan">(pkg, deps, options)</span>
@@ -72,12 +81,62 @@
 
         </li>
 
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.dependency-check.toString">
+            function <span class="apidocSignatureSpan">dependency-check.</span>toString
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
     </ol></li>
 
 </ol></div>
 
 <div class="apidocSectionDiv">
 <h1><a href="#apidoc.module.dependency-check" id="apidoc.module.dependency-check">module dependency-check</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.dependency-check.dependency-check" id="apidoc.element.dependency-check.dependency-check">
+        function <span class="apidocSignatureSpan"></span>dependency-check
+        <span class="apidocSignatureSpan">(opts, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">dependency-check = function (opts, cb) {
+  var pkgPath = opts.path
+  readPackage(pkgPath, function (err, pkg) {
+    if (err &amp;&amp; err.code === 'EISDIR') {
+      pkgPath = path.join(pkgPath, 'package.json')
+      return readPackage(pkgPath, function (err, pkg) {
+        if (err) return cb(err)
+        parse({
+          path: pkgPath,
+          package: pkg,
+          entries: opts.entries,
+          noDefaultEntries: opts.noDefaultEntries,
+          builtins: opts.builtins,
+          extensions: opts.extensions,
+          detective: opts.detective
+        }, cb)
+      })
+    }
+    parse({
+      path: pkgPath,
+      package: pkg,
+      entries: opts.entries,
+      noDefaultEntries: opts.noDefaultEntries,
+      builtins: opts.builtins,
+      extensions: opts.extensions,
+      detective: opts.detective
+    }, cb)
+  })
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
 
 
     <h2>
@@ -122,6 +181,21 @@
   })
 
   return missing
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.dependency-check.toString" id="apidoc.element.dependency-check.toString">
+        function <span class="apidocSignatureSpan">dependency-check.</span>toString
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">toString = function () {
+    return toString;
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
