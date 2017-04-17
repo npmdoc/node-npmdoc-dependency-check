@@ -3,6 +3,8 @@
 
 [![NPM](https://nodei.co/npm/dependency-check.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/dependency-check)
 
+- [https://npmdoc.github.io/node-npmdoc-dependency-check/build/apidoc.html](https://npmdoc.github.io/node-npmdoc-dependency-check/build/apidoc.html)
+
 [![apidoc](https://npmdoc.github.io/node-npmdoc-dependency-check/build/screenCapture.buildCi.browser.%252Ftmp%252Fbuild%252Fapidoc.html.png)](https://npmdoc.github.io/node-npmdoc-dependency-check/build/apidoc.html)
 
 ![npmPackageListing](https://npmdoc.github.io/node-npmdoc-dependency-check/build/screenCapture.npmPackageListing.svg)
@@ -72,112 +74,6 @@
     },
     "version": "2.8.0"
 }
-```
-
-
-
-# <a name="apidoc.tableOfContents"></a>[table of contents](#apidoc.tableOfContents)
-
-#### [module dependency-check](#apidoc.module.dependency-check)
-1.  [function <span class="apidocSignatureSpan"></span>dependency-check (opts, cb)](#apidoc.element.dependency-check.dependency-check)
-1.  [function <span class="apidocSignatureSpan">dependency-check.</span>extra (pkg, deps, options)](#apidoc.element.dependency-check.extra)
-1.  [function <span class="apidocSignatureSpan">dependency-check.</span>missing (pkg, deps, options)](#apidoc.element.dependency-check.missing)
-1.  [function <span class="apidocSignatureSpan">dependency-check.</span>toString ()](#apidoc.element.dependency-check.toString)
-
-
-
-# <a name="apidoc.module.dependency-check"></a>[module dependency-check](#apidoc.module.dependency-check)
-
-#### <a name="apidoc.element.dependency-check.dependency-check"></a>[function <span class="apidocSignatureSpan"></span>dependency-check (opts, cb)](#apidoc.element.dependency-check.dependency-check)
-- description and source-code
-```javascript
-dependency-check = function (opts, cb) {
-  var pkgPath = opts.path
-  readPackage(pkgPath, function (err, pkg) {
-    if (err && err.code === 'EISDIR') {
-      pkgPath = path.join(pkgPath, 'package.json')
-      return readPackage(pkgPath, function (err, pkg) {
-        if (err) return cb(err)
-        parse({
-          path: pkgPath,
-          package: pkg,
-          entries: opts.entries,
-          noDefaultEntries: opts.noDefaultEntries,
-          builtins: opts.builtins,
-          extensions: opts.extensions,
-          detective: opts.detective
-        }, cb)
-      })
-    }
-    parse({
-      path: pkgPath,
-      package: pkg,
-      entries: opts.entries,
-      noDefaultEntries: opts.noDefaultEntries,
-      builtins: opts.builtins,
-      extensions: opts.extensions,
-      detective: opts.detective
-    }, cb)
-  })
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.dependency-check.extra"></a>[function <span class="apidocSignatureSpan">dependency-check.</span>extra (pkg, deps, options)](#apidoc.element.dependency-check.extra)
-- description and source-code
-```javascript
-extra = function (pkg, deps, options) {
-  var missing = []
-  var config = configure(pkg, options)
-
-  config.allDeps.map(function (dep) {
-    if (deps.indexOf(dep) === -1 && config.ignore.indexOf(dep) === -1) {
-      missing.push(dep)
-    }
-  })
-
-  return missing
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.dependency-check.missing"></a>[function <span class="apidocSignatureSpan">dependency-check.</span>missing (pkg, deps, options)](#apidoc.element.dependency-check.missing)
-- description and source-code
-```javascript
-missing = function (pkg, deps, options) {
-  var missing = []
-  var config = configure(pkg, options)
-
-  deps.map(function (used) {
-    if (config.allDeps.indexOf(used) === -1 && config.ignore.indexOf(used) === -1) {
-      missing.push(used)
-    }
-  })
-
-  return missing
-}
-```
-- example usage
-```shell
-n/a
-```
-
-#### <a name="apidoc.element.dependency-check.toString"></a>[function <span class="apidocSignatureSpan">dependency-check.</span>toString ()](#apidoc.element.dependency-check.toString)
-- description and source-code
-```javascript
-toString = function () {
-    return toString;
-}
-```
-- example usage
-```shell
-n/a
 ```
 
 
