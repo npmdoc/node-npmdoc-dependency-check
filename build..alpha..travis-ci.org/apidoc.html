@@ -88,54 +88,6 @@
 
         </li>
 
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.dependency-check.toString">
-            function <span class="apidocSignatureSpan">dependency-check.</span>toString
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.dependency-check.extra">module dependency-check.extra</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.dependency-check.extra.extra">
-            function <span class="apidocSignatureSpan">dependency-check.</span>extra
-            <span class="apidocSignatureSpan">(pkg, deps, options)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.dependency-check.missing">module dependency-check.missing</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.dependency-check.missing.missing">
-            function <span class="apidocSignatureSpan">dependency-check.</span>missing
-            <span class="apidocSignatureSpan">(pkg, deps, options)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.dependency-check.toString">module dependency-check.toString</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.dependency-check.toString.toString">
-            function <span class="apidocSignatureSpan">dependency-check.</span>toString
-            <span class="apidocSignatureSpan">()</span>
-            </a>
-
-        </li>
-
     </ol></li>
 
 </ol></div>
@@ -204,7 +156,23 @@
 
   return missing
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var deps = data.used
+var failed = 0
+var options = {
+  excludeDev: args.dev === false,
+  ignore: [].concat(args.i || [])
+}
+if (args.extra) {
+  var extras = check.<span class="apidocCodeKeywordSpan">extra</span>(pkg, deps, options)
+  failed += extras.length
+  if (extras.length) {
+    console.error(&#x27;Fail! Modules in package.json not used in code: &#x27; + extras.join(&#x27;, &#x27;))
+  } else {
+    console.log(&#x27;Success! All dependencies in package.json are used in the code&#x27;)
+  }
+}
+...</pre></li>
     </ul>
 
 
@@ -228,98 +196,23 @@
 
   return missing
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-    <h2>
-        <a href="#apidoc.element.dependency-check.toString" id="apidoc.element.dependency-check.toString">
-        function <span class="apidocSignatureSpan">dependency-check.</span>toString
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">toString = function () {
-    return text;
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.dependency-check.extra" id="apidoc.module.dependency-check.extra">module dependency-check.extra</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.dependency-check.extra.extra" id="apidoc.element.dependency-check.extra.extra">
-        function <span class="apidocSignatureSpan">dependency-check.</span>extra
-        <span class="apidocSignatureSpan">(pkg, deps, options)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">extra = function (pkg, deps, options) {
-  var missing = []
-  var config = configure(pkg, options)
-
-  config.allDeps.map(function (dep) {
-    if (deps.indexOf(dep) === -1 &#x26;&#x26; config.ignore.indexOf(dep) === -1) {
-      missing.push(dep)
-    }
-  })
-
-  return missing
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.dependency-check.missing" id="apidoc.module.dependency-check.missing">module dependency-check.missing</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.dependency-check.missing.missing" id="apidoc.element.dependency-check.missing.missing">
-        function <span class="apidocSignatureSpan">dependency-check.</span>missing
-        <span class="apidocSignatureSpan">(pkg, deps, options)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">missing = function (pkg, deps, options) {
-  var missing = []
-  var config = configure(pkg, options)
-
-  deps.map(function (used) {
-    if (config.allDeps.indexOf(used) === -1 &#x26;&#x26; config.ignore.indexOf(used) === -1) {
-      missing.push(used)
-    }
-  })
-
-  return missing
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.dependency-check.toString" id="apidoc.module.dependency-check.toString">module dependency-check.toString</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.dependency-check.toString.toString" id="apidoc.element.dependency-check.toString.toString">
-        function <span class="apidocSignatureSpan">dependency-check.</span>toString
-        <span class="apidocSignatureSpan">()</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">function toString() { [native code] }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  if (extras.length) {
+    console.error(&#x27;Fail! Modules in package.json not used in code: &#x27; + extras.join(&#x27;, &#x27;))
+  } else {
+    console.log(&#x27;Success! All dependencies in package.json are used in the code&#x27;)
+  }
+}
+if (args.missing || !args.extra) {
+  var missing = check.<span class="apidocCodeKeywordSpan">missing</span>(pkg, deps, options)
+  failed += missing.length
+  if (missing.length) {
+    console.error(&#x27;Fail! Dependencies not listed in package.json: &#x27; + missing.join(&#x27;, &#x27;))
+  } else {
+    console.log(&#x27;Success! All dependencies used in the code are listed in package.json&#x27;)
+  }
+}
+...</pre></li>
     </ul>
 
 
