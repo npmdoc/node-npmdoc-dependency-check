@@ -1,4 +1,7 @@
-# api documentation for  [dependency-check (v2.8.0)](https://github.com/maxogden/dependency-check)  [![npm package](https://img.shields.io/npm/v/npmdoc-dependency-check.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-dependency-check) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-dependency-check.svg)](https://travis-ci.org/npmdoc/node-npmdoc-dependency-check)
+# npmdoc-dependency-check
+
+#### basic api documentation for  [dependency-check (v2.8.0)](https://github.com/maxogden/dependency-check)  [![npm package](https://img.shields.io/npm/v/npmdoc-dependency-check.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-dependency-check) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-dependency-check.svg)](https://travis-ci.org/npmdoc/node-npmdoc-dependency-check)
+
 #### checks which modules you have used in your code and then makes sure they are listed as dependencies in your package.json
 
 [![NPM](https://nodei.co/npm/dependency-check.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/dependency-check)
